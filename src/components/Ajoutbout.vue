@@ -69,7 +69,8 @@ export default {
        {
            
           const id = categorieRef.push({name: this.nomCat}).key;
-           categorieRef.child(id).update({id: id}) ;    
+           categorieRef.child(id).update({id: id}) ; 
+           alert(id)   
          this.$buefy.toast.open({
             message: 'Enregistrement de Categorie confirmé',
             type: 'is-success',

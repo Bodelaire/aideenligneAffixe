@@ -1,10 +1,28 @@
 <template>
   <div>
-     <h1>  {{article.titre}} </h1 > 
-    </br></br>
-    <p v-html="article.content">  </p>
-
+<p style="text-align: left"> &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Aide en ligne /<strong>Categorie</strong> </p>
+<div class="container has-background-white " style="text-align: justify">
+   <div class="content"  >
+  
+    <p><strong>   {{article.titre}} </strong ></p>
+    </br>
+    </br>
+    <p style="text-align: justify" v-html="article.content">   </p>
+    </div>
+    </div>
+    <article class="message">
+  <div class="message-body">
+   <p class="content" style="text-align: justify"> Ces informations vous ont-elles été utiles?    </p>
+   
   </div>
+</article>
+  </div>
+ 
+
+
+
+
+  
 </template>
 
 <script>

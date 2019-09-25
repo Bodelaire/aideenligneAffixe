@@ -1,9 +1,9 @@
 <template>
   <div>
- ; <p style="text-align: left"> &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Aide en ligne /<strong>Categorie</strong> </p>
-      <section class="container has-background-white" v-for="(item, index) in categories" :key="index">
-        <b-collapse :open="false" aria-id="contentIdForA11y1">
-            <article  class="media espace espacemargin"
+ <p v-if= "clique" style="text-align: left"> &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Aide en ligne /<strong>Categorie</strong> </p>
+      <section class="container has-background-white" @click=" clique=true " v-for="(item, index) in categories" :key="index">
+        <b-collapse :open="false"  aria-id="contentIdForA11y1">
+            <article  class="media espace espacemargin">
                     slot="trigger"
                     aria-controls="contentIdForA11y1">
                 <figure class="media-left">
@@ -12,7 +12,7 @@
                     </p>
                 </figure>
                 <div class="media-content">
-                    <div class="content">
+                    <div class="container has-background-white ">
                       <p>
                           <strong>{{item.name}}</strong>
                           <br>
@@ -40,6 +40,7 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
+      clique: false,
       articles: [],
       categories: []
     }

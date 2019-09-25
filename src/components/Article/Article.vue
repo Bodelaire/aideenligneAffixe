@@ -1,39 +1,40 @@
 <template>
   <div>
-
-<p> {{ this.username}} </p>
-
-  
+     <h1>  {{article.titre}} </h1 > 
+    </br></br>
+    <p v-html="article.content">  </p>
 
   </div>
 </template>
 
 <script>
 import { db } from "../../firebase.js";
-import Router from 'vue-router'
 
 
 export default {
   data() {
      return {
        valeur: "",
-      articles: [],
-       nameArticle: {},
-       username: ""
+       article: {},
+       nameArticle: {}
     }
   },
   methods: {
-  getAct (id) {
-   this.username= db.ref('Article').child(id).content ; 
-    alert(id)    
-    return this.username;
+  getAct() {
+        db.ref('Article/' + this.$route.params.id).once('value', (snap) => {
+          if (snap.val()) {
+            this.article = snap.val()
+          } else {
+            this.article = {}
+          }
+        })
+      }
   }
   ,
   mounted () {
     
-    this.getAct(this.$route.params.id)
+    this.getAct();
     
-  }
   }
 }
 </script>

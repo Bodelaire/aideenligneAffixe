@@ -110,10 +110,10 @@ export default {
     }
   },
   mounted () {
-    this.getCat()
+    
   },
   destroyed () {
-    db.ref('categories/').off()
+   
   }
 }
 </script>

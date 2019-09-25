@@ -65,7 +65,6 @@ export default {
   },
   methods: {
      submitCategorie() {
-        alert(categorieRef[0]);
        if(this.nomCat.length)
        {
            

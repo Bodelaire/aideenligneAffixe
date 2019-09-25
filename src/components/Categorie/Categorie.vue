@@ -7,7 +7,7 @@
                     aria-controls="contentIdForA11y1">
                 <figure class="media-left">
                     <p class="image is-64x64">
-                    <img src="../../images/iconcall.png" alt="">
+                    
                     </p>
                 </figure>
                 <div class="media-content">
@@ -34,22 +34,14 @@
 
 <script>
 import { db } from "../../firebase.js";
-import { articleRef } from "../../firebase.js";
-import { categorieRef } from "../../firebase.js";
 
 export default {
   name: 'HelloWorld',
   data() {
     return {
-       nameCategorie: {},
-      nameArticle: {},
       articles: [],
       categories: []
     }
-  },
-  firebase: {
-    nameCategorie: categorieRef,
-    nameArticle: articleRef
   },
   methods: {
    articlesCat(id) {

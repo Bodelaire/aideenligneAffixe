@@ -1,19 +1,20 @@
 <template>
   <div>
+ ; <p style="text-align: left"> &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Aide en ligne /<strong>Categorie</strong> </p>
       <section class="container has-background-white" v-for="(item, index) in categories" :key="index">
         <b-collapse :open="false" aria-id="contentIdForA11y1">
             <article  class="media espace espacemargin"
                     slot="trigger"
                     aria-controls="contentIdForA11y1">
                 <figure class="media-left">
-                    <p class="image is-64x64">
-                    
+                    <p class="image is-64x64" >
+                      <img src="../../images/iconcall.png" alt="">
                     </p>
                 </figure>
                 <div class="media-content">
                     <div class="content">
                       <p>
-                          <strong>{{item.libelle}}</strong>
+                          <strong>{{item.name}}</strong>
                           <br>
                           {{articlesCat(item.id).length}} articles dans cette catégorie
                       </p>

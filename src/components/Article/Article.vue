@@ -1,12 +1,11 @@
 <template>
   <div>
-<p style="text-align: left"> &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Aide en ligne /<strong>Categorie</strong> </p>
+<p style="text-align: left">  Aide en ligne /<strong>Categorie</strong> </p>
 <div class="container has-background-white " style="text-align: justify">
    <div class="content"  >
   
     <p><strong>   {{article.titre}} </strong ></p>
-    </br>
-    </br>
+    
     <p style="text-align: justify" v-html="article.content">   </p>
     </div>
     </div>

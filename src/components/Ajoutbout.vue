@@ -45,7 +45,6 @@
 import { VueEditor } from "vue2-editor";
 import {categorieRef } from '../firebase.js';
 import {articleRef } from '../firebase.js';
-import {db } from '../firebase.js';
 export default {
  data() {
       return {

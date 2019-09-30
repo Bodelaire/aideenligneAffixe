@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar is-info" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
+        <a class="navbar-item" href="/">
           <img src="./images/image001.jpg" width="112" height="28">
         </a>
       </div>
@@ -17,15 +17,28 @@
           </div>
         </div>
       </div>
-    </nav>
-   <div class="h-100 conteneur">
-      <section class="section">
+  </nav>
+  <div class="h-100 conteneur backColor-blue">
+      <section class="padding-top-bottom-3 section width-70 ">
         <div class="container">
-            <h1 class="title is-4" style="color: white">Comment pouvons-nous vous aider ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               <span class="icon is-small is-left">
-                    <i class="fas fa-external-link-alt"></i>
-               </span>&nbsp; Aller sur Affixe2.0
-            </h1>
+             <!-- Main container -->
+          <nav class="level">
+            <!-- Left side -->
+            <div class="level-left">
+              <div class="level-item">
+                <p class="subtitle is-10 has-text-white">
+                  Comment pouvons-nous vous aider ?
+                </p>
+              </div>
+              <div class="level-item"></div>
+            </div>
+
+            <!-- Right side -->
+            <div class="level-right">
+              <p class="level-item has-text-white"><i class="fas fa-external-link-alt"></i></p>
+              <p class="level-item has-text-white">Aller sur Affixe2.0</p>
+            </div>
+          </nav>
            <div class="field">
                 <p class="control has-icons-left has-icons-right">
                     <input class="input" type="search" placeholder="Rechercher des réponses...">
@@ -33,12 +46,11 @@
                     <i class="fas fa-search"></i>
                     </span>
                 </p>
-            </div> 
-         </div>
+          </div> 
+        </div>
       </section>
     </div>
-    <router-view> </router-view>
-    
+    <router-view></router-view>
   </div>
 </template>
 
@@ -49,6 +61,11 @@ export default {
   components: {
     Ajoutbout
   },
+ data() {
+     return {
+      essai: true
+    }
+  }
 }
 </script>
 
@@ -68,7 +85,6 @@ html {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #388fec;
   margin-bottom: 20px;
 }
 .espace {
@@ -77,5 +93,26 @@ html {
 .espacemargin {
   margin-bottom: 10px;
   margin-top: 10px;
+}
+.width-70 {
+ width: 70%
+}
+.backColor-blue {
+background-color: #388fec;
+}
+.backColor-white {
+background-color: #ffffff;
+}
+.section2{
+padding-top: 0rem;
+padding-right: 1.5rem;
+padding-bottom: 0.3rem;
+padding-left: 1.5rem;
+}
+.section3{
+padding-top: 0rem;
+padding-right: 1.5rem;
+padding-bottom: 0rem;
+padding-left: 1.5rem;
 }
 </style>

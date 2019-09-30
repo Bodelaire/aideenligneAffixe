@@ -1,14 +1,26 @@
 <template>
   <div>
-<p style="text-align: left">  Aide en ligne /<strong>Categorie</strong> </p>
-<div class="container has-background-white " style="text-align: justify">
-   <div class="content"  >
-  
-    <p><strong>   {{article.titre}} </strong ></p>
-    
-    <p style="text-align: justify" v-html="article.content">   </p>
-    </div>
-    </div>
+<div class=" conteneur ">
+      <section class="section3 width-70 ">
+        <div class="container">
+          <router-link :to="{ name: 'categorie'}">
+                 <p style="text-align: left"> Aide en ligne /<strong>Categorie</strong> </p>
+           </router-link>
+          
+         </div>
+      </section>
+       </div>
+
+       <div class=" conteneur ">
+      <section class="section3 width-70 ">
+        <div class="container has-background-white">
+          <p><strong>   {{article.titre}} </strong ></p>
+         <p style="text-align: justify" v-html="article.content">   </p>
+          
+         </div>
+      </section>
+       </div>
+
     <article class="message">
   <div class="message-body">
    <p class="content" style="text-align: justify"> Ces informations vous ont-elles été utiles?    </p>

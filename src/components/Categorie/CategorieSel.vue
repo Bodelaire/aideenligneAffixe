@@ -1,9 +1,20 @@
 <template>
   <div>
+ 
  <div class=" conteneur ">
-      <section class="section2 width-70 " v-for="(item, index) in categories" :key="index">
+      <section class="section3 width-70 ">
+        <div class="container">
+          <router-link :to="{ name: 'categorie'}">
+                 <p style="text-align: left"> Aide en ligne /<strong>Categorie</strong> </p>
+           </router-link>
+          
+         </div>
+      </section>
+       </div>
+ <div class=" conteneur ">
+      <section class="section2 width-70 ">
         <div class="container has-background-white">
-        <b-collapse :open="false"  aria-id="contentIdForA11y1">
+          <b-collapse :open="true"  aria-id="contentIdForA11y1">
             <article  class="media espace espacemargin" slot="trigger" aria-controls="contentIdForA11y1">
                 <figure class="media-left">
                     <p class="image is-64x64" >
@@ -13,16 +24,21 @@
                 <div class="media-content">
                     <div class="container has-background-white ">
                       <p>
-                         <router-link :to="{ name: 'categorieSel', params: { id: item.id }}">
-                             <strong>{{item.name}}</strong>
-                        </router-link>
+                          <strong>{{categories.name}}</strong>
                           <br>
-                          {{articlesCat(item.id).length}} articles dans cette catégorie
+                          {{articlesCat(categories.id).length}} articles dans cette catégorie
                       </p>
             </div>
     </div>
             </article>
-        </b-collapse>
+              <div class="espace">
+                        <div class="content espace has-background-light" v-for="(art, y) in articlesCat(categories.id)" :key="y">
+                          <router-link :to="{ name: 'article', params: { id: art.id }}">
+                            <strong>{{art.titre}}</strong>
+                        </router-link>
+                        </div>
+              </div>
+               </b-collapse>
          </div>
       </section>
        </div>
@@ -32,14 +48,13 @@
 <script>
 import { db } from "../../firebase.js";
 
-
 export default {
-  name: 'HelloWorld',
+  name: 'categorieSel',
   data() {
     return {
       clique: false,
       articles: [],
-      categories: []
+      categories: {}
     }
   },
   methods: {
@@ -56,14 +71,18 @@ export default {
       })
     },
     getCat () {
-       db.ref('Categorie').on('value', (snap) => {
-        if (snap.val()) {
-          this.categories = Object.values(snap.val())
-        } else {
-          this.categories = []
-        }
-      })
-    }
+      
+        db.ref('Categorie/' + this.$route.params.id).once('value', (snap) => {
+          if (snap.val()) {
+            this.categories = snap.val()
+           
+            
+          } else {
+            
+            this.categories = {}
+          }
+        })
+      }
   },
   mounted () {
     this.getCat()

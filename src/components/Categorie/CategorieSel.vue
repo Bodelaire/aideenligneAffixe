@@ -5,7 +5,7 @@
       <section class="section3 width-70 ">
         <div class="container">
           <router-link :to="{ name: 'categorie'}">
-                 <p style="text-align: left"> Aide en ligne /<strong>Categorie</strong> </p>
+                 <p style="text-align: left; color: black"> Aide en ligne /<strong>Categorie</strong> </p>
            </router-link>
           
          </div>

@@ -8,12 +8,19 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "base64-img": "^1.0.4",
     "buefy": "^0.8.4",
     "core-js": "^2.6.5",
+    "datauri": "^2.0.0",
+    "file-system": "^2.2.2",
     "firebase": "^6.6.2",
     "image-to-base64": "^2.0.1",
+    "remove": "^0.1.5",
     "vue": "^2.6.10",
+    "vue-base64-file-upload": "^1.0.4",
+    "vue-moment": "^4.0.0",
     "vue-router": "^3.0.3",
+    "vue-upload-image": "^1.1.2",
     "vue2-editor": "^2.10.2",
     "vuefire": "^2.1.2"
   },

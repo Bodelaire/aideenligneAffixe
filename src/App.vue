@@ -41,7 +41,7 @@
           </nav>
            <div class="field">
                 <p class="control has-icons-left has-icons-right">
-                    <input class="input" type="search" placeholder="Rechercher des réponses...">
+                    <input class="input" v-model="motrecherche" type="search" @keypress="resetessai" @keyup.8 ="resetessai" placeholder="Rechercher des réponses...">
                     <span class="icon is-small is-left">
                     <i class="fas fa-search"></i>
                     </span>
@@ -50,23 +50,56 @@
         </div>
       </section>
     </div>
+    <Recherche v-if="essai" ></Recherche>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Ajoutbout from './components/Ajoutbout.vue'
+import Recherche from './components/Recherche.vue'
+import {categorieRef, articleRef} from './firebase.js'
+
+
 export default {
    name: 'app',
   components: {
-    Ajoutbout
+    Ajoutbout,
+    Recherche
   },
  data() {
      return {
-      essai: true
+      essai: false,
+      motrecherche: '',
+      categories: [],
+      articles: []
     }
+  },
+  firebase: {
+    categories: categorieRef,
+    articles: articleRef
+  },
+  methods: {
+    resetessai() {
+     console.log( this.motrecherche.length)
+     console.log( this.motrecherche.trim)
+      if ( this.motrecherche==='' || this.motrecherche.length===0) {
+        console.log(this.motrecherche)
+        this.essai=false
+      }
+      else
+      {
+         console.log(this.motrecherche)
+        this.essai=true
+      }
+    }
+  },
+  mounted () {
+   this.articles=this.articles
+   this.categories=this.categories
+    
   }
-}
+  }
 </script>
 
 <style>
@@ -114,5 +147,11 @@ padding-top: 0rem;
 padding-right: 1.5rem;
 padding-bottom: 0rem;
 padding-left: 1.5rem;
+}
+.section4{
+padding-top: 1rem;
+padding-right: 2rem;
+padding-bottom: 2rem;
+padding-left: 2rem;
 }
 </style>

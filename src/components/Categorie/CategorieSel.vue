@@ -14,11 +14,11 @@
  <div class=" conteneur ">
       <section class="section2 width-70 ">
         <div class="container has-background-white">
-          <b-collapse :open="true"  aria-id="contentIdForA11y1">
+         
             <article  class="media espace espacemargin" slot="trigger" aria-controls="contentIdForA11y1">
                 <figure class="media-left">
                     <p class="image is-64x64" >
-                      <img src="../../images/iconcall.png" alt="">
+                      <img :src="categories.image" alt="">
                     </p>
                 </figure>
                 <div class="media-content">
@@ -35,10 +35,12 @@
                         <div class="content espace has-background-light" v-for="(art, y) in articlesCat(categories.id)" :key="y">
                           <router-link :to="{ name: 'article', params: { id: art.id }}">
                             <strong>{{art.titre}}</strong>
+                            <br>
+                             Mise à jour il y a  {{getDate(art.dateCreation)}}
                         </router-link>
                         </div>
               </div>
-               </b-collapse>
+               
          </div>
       </section>
        </div>
@@ -46,7 +48,12 @@
 </template>
 
 <script>
-import { db } from "../../firebase.js";
+
+import {categorieRef } from '../../firebase.js';
+import {articleRef } from '../../firebase.js';
+import moment from 'moment'
+
+
 
 export default {
   name: 'categorieSel',
@@ -54,43 +61,30 @@ export default {
     return {
       clique: false,
       articles: [],
-      categories: {}
+      categories: []
+      
     }
+  },
+   firebase: {
+    categories: categorieRef,
+    articles: articleRef
   },
   methods: {
    articlesCat(id) {
       return this.articles.filter(art => art.idCat === id);
     },
-    getAct () {
-      db.ref('Article').on('value', (snap) => {
-        if (snap.val()) {
-          this.articles = Object.values(snap.val())
-        } else {
-          this.articles = []
-        }
-      })
-    },
     getCat () {
       
-        db.ref('Categorie/' + this.$route.params.id).once('value', (snap) => {
-          if (snap.val()) {
-            this.categories = snap.val()
-           
-            
-          } else {
-            
-            this.categories = {}
-          }
-        })
-      }
+    this.categories=this.categories.filter(art => art.id == this.$route.params.id);
+    this.categories=this.categories[0]
+      },
+    getDate(date){
+     return moment(date, 'lll').fromNow();
+    }
   },
   mounted () {
+ 
     this.getCat()
-    this.getAct()
-  },
-  destroyed () {
-    db.ref('Categorie').off()
-    db.ref('Article').off()
   }
 }
 </script>

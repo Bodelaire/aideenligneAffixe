@@ -4,7 +4,7 @@
       <section class="section3 width-70 ">
         <div class="container">
           <router-link :to="{ name: 'categorie'}">
-                 <p style="text-align: left"> Aide en ligne /<strong>Categorie</strong> </p>
+                 <p style="text-align: left; color: black"> Aide en ligne /<strong>Categorie</strong> </p>
            </router-link>
           
          </div>
@@ -15,7 +15,15 @@
       <section class="section3 width-70 ">
         <div class="container has-background-white">
           <p><strong>   {{article.titre}} </strong ></p>
-         <p style="text-align: justify" v-html="article.content">   </p>
+
+        <section class="section4 ">
+        <div class="container">
+          <p style="text-align: justify" v-html="article.content">   </p>
+          
+         </div>
+      </section>
+
+        
           
          </div>
       </section>
@@ -23,7 +31,7 @@
 
     <article class="message">
   <div class="message-body">
-   <p class="content" style="text-align: justify"> Ces informations vous ont-elles été utiles?    </p>
+   <p class="content pad1" style="text-align: justify"> Ces informations vous ont-elles été utiles?    </p>
    
   </div>
 </article>
@@ -37,31 +45,28 @@
 </template>
 
 <script>
-import { db } from "../../firebase.js";
+
+import {articleRef } from '../../firebase.js';
 
 
 export default {
   data() {
      return {
-       valeur: "",
-       article: {},
-       nameArticle: {}
+       article: []
     }
+  },
+   firebase: {
+    article: articleRef
   },
   methods: {
   getAct() {
-        db.ref('Article/' + this.$route.params.id).once('value', (snap) => {
-          if (snap.val()) {
-            this.article = snap.val()
-          } else {
-            this.article = {}
-          }
-        })
+     this.article=this.$parent.articles.filter(art => art.id == this.$route.params.id);
+    this.article=this.article[0]
       }
   }
   ,
   mounted () {
-    
+  
     this.getAct();
     
   }
@@ -69,5 +74,13 @@ export default {
 </script>
 
 <style>
+.pad1{
+padding-top: 0rem;
+padding-right: 1.5rem;
+padding-bottom: 0rem;
+padding-left: 1.5rem;
+margin-left: 1rem 
+}
+
 </style>
 

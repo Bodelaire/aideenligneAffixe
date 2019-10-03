@@ -27,9 +27,21 @@
         </b-tab-item>
 
         <b-tab-item label="Categorie">
+          <b-field class="file">
+        <b-upload v-model="file" @input="imageAdd">
+            <a class="button is-primary">
+                <b-icon icon="upload"></b-icon>
+                <span>Cliquer pour selectionner l'image</span>
+            </a>
+        </b-upload>
+        <span class="file-name" v-if="file">
+            {{ file.name }}
+        </span>
+    </b-field>
            <b-field label="Categorie">
              <b-input v-model="nomCat"></b-input>
            </b-field>
+           
            <div class="buttons">
                <b-button @click="submitCategorie()" type="is-primary">Valider</b-button>
              </div>
@@ -45,6 +57,9 @@
 import { VueEditor } from "vue2-editor";
 import {categorieRef } from '../firebase.js';
 import {articleRef } from '../firebase.js';
+import moment from 'moment'
+
+
 export default {
  data() {
       return {
@@ -53,7 +68,9 @@ export default {
         content: "",
         nomCat:"",
         nameCategorie: {},
-        titreArticle: ''
+        titreArticle: '',
+        file: null,
+        filedata64: ''
       }
   },
   firebase: {
@@ -63,25 +80,35 @@ export default {
     VueEditor
   },
   methods: {
+    imageAdd (e) {
+      const imge = e;
+      const reader = new FileReader();
+      reader.readAsDataURL(imge);
+      reader.onload = e =>{
+          this.filedata64 = e.target.result;
+      }
+    },
      submitCategorie() {
-       if(this.nomCat.length)
+  
+
+       
+        if(this.nomCat.length && this.file!=null)
        {
-           
-          const id = categorieRef.push({name: this.nomCat}).key;
-           categorieRef.child(id).update({id: id}) ; 
-           alert(id)   
-         this.$buefy.toast.open({
+             const id = categorieRef.push({name: this.nomCat,image: this.filedata64}).key;
+           categorieRef.child(id).update({id: id}) ;   
+
+             this.$buefy.toast.open({
             message: 'Enregistrement de Categorie confirmé',
             type: 'is-success',
             position: 'is-bottom'
 
-           })
-           this.nomCat='';
+           });
+           
        }
        else
        {
          this.$buefy.toast.open({
-            message: 'veuillez renseigner le nom de la categorie',
+            message: 'veuillez renseigner le nom de la categorie ou selectionner une image',
             type: 'is-danger',
             position: 'is-bottom'
 
@@ -90,7 +117,7 @@ export default {
      },
     submitArticle () {
       if (this.titreArticle.length && this.content.length && this.nameCategorie.name) {
-        const id = articleRef.push({titre: this.titreArticle,content: this.content,idCat: this.nameCategorie.name}).key;
+        const id = articleRef.push({titre: this.titreArticle,content: this.content,idCat: this.nameCategorie.name,dateCreation: moment().format('lll')}).key;
         articleRef.child(id).update({id: id}) ;
         this.titreArticle = ''
         this.content = ''

@@ -7,7 +7,7 @@
             <article  class="media espace espacemargin" slot="trigger" aria-controls="contentIdForA11y1">
                 <figure class="media-left">
                     <p class="image is-64x64" >
-                      <img src="../../images/iconcall.png" alt="">
+                      <img :src="item.image" alt="">
                     </p>
                 </figure>
                 <div class="media-content">
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { db } from "../../firebase.js";
+
 
 
 export default {
@@ -38,41 +38,22 @@ export default {
   data() {
     return {
       clique: false,
-      articles: [],
+      articles: {},
       categories: []
     }
   },
   methods: {
    articlesCat(id) {
+    
       return this.articles.filter(art => art.idCat === id);
-    },
-    getAct () {
-      db.ref('Article').on('value', (snap) => {
-        if (snap.val()) {
-          this.articles = Object.values(snap.val())
-        } else {
-          this.articles = []
-        }
-      })
-    },
-    getCat () {
-       db.ref('Categorie').on('value', (snap) => {
-        if (snap.val()) {
-          this.categories = Object.values(snap.val())
-        } else {
-          this.categories = []
-        }
-      })
     }
-  },
+    },
   mounted () {
-    this.getCat()
-    this.getAct()
-  },
-  destroyed () {
-    db.ref('Categorie').off()
-    db.ref('Article').off()
+     this.categories=this.$parent.categories
+     this.articles=this.$parent.articles 
+      
   }
+
 }
 </script>
 

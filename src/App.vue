@@ -51,7 +51,7 @@
       </section>
     </div>
     <Recherche v-if="essai" ></Recherche>
-    <router-view></router-view>
+    <router-view v-if="!essai"></router-view>
   </div>
 </template>
 

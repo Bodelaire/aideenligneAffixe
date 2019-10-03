@@ -59,7 +59,7 @@
                              <strong>{{item.titre}}</strong>
                         </router-link>
                           <br>
-                          Mise à jour il y a  {{getDate(art.dateCreation)}}
+                          Mise à jour il y a  {{getDate(item.dateCreation)}}
                       </p>
             </div>
     </div>

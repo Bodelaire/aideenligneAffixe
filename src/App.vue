@@ -81,15 +81,13 @@ export default {
   },
   methods: {
     resetessai() {
-     console.log( this.motrecherche.length)
-     console.log( this.motrecherche.trim)
+    
       if ( this.motrecherche==='' || this.motrecherche.length===0) {
-        console.log(this.motrecherche)
         this.essai=false
       }
       else
       {
-         console.log(this.motrecherche)
+        
         this.essai=true
       }
     }

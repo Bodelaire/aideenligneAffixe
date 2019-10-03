@@ -104,6 +104,9 @@ export default {
     },
      articlesCat(id) {
       return this.articles.filter(art => art.idCat === id);
+    },
+    getDate(date){
+     return moment(date, 'lll').fromNow();
     }
   },
   mounted () {

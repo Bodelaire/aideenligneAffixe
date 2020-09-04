@@ -18,7 +18,7 @@
     "remove": "^0.1.5",
     "vue": "^2.6.10",
     "vue-base64-file-upload": "^1.0.4",
-    "vue-moment": "^4.0.0",
+    "vue-moment": "^4.1.0",
     "vue-router": "^3.0.3",
     "vue-upload-image": "^1.1.2",
     "vue2-editor": "^2.10.2",
